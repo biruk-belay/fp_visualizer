@@ -1,0 +1,829 @@
+/*
+
+Vivado v2016.4 (64-bit)
+SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+Process ID: 26735
+
+Current time: 	10/11/18 1:36:58 PM CEST
+Time zone: 	Central European Time (Europe/Rome)
+
+OS: DISTRIB_ID=Ubuntu
+Version: 4.15.0-36-generic
+Architecture: amd64
+Available processors (cores): 8
+
+DISPLAY: :0
+Screen size: 3840x1080
+Screen resolution (DPI): 96
+Available screens: 2
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_66 64-bit
+Java home: 	/opt/Xilinx/Vivado/2016.4/tps/lnx64/jre
+
+User name: 	root
+User home directory: /root
+User working directory: /usr/local/src/floorplan/simulator/fp_visualizer
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI base root directory: /opt/Xilinx/Vivado
+RDI data directory: /opt/Xilinx/Vivado/2016.4/data
+RDI bin directory: /opt/Xilinx/Vivado/2016.4/bin
+
+Vivado preferences path: /root/.Xilinx/Vivado/2016.4/vivado.ini
+Vivado layouts directory: /root/.Xilinx/Vivado/2016.4/layouts
+
+GUI allocated memory:	203 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 830 MB
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 32 MB (+30709kb) [00:00:05]
+// [Engine Memory]: 830 MB (+719153kb) [00:00:05]
+// HMemoryUtils.trashcanNow. Engine heap size: 841 MB. GUI used memory: 22 MB. Current time: 10/11/18 1:37:00 PM CEST
+selectButton(PAResourceEtoH.GettingStartedView_OPEN_PROJECT, "Open Project"); // k:JideButton (JPanel:JComponent, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// [GUI Memory]: 34 MB (+546kb) [00:00:15]
+// [GUI Memory]: 36 MB (+94kb) [00:00:25]
+// Elapsed time: 31 seconds
+setFileChooser("/usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z015/dummy_7z015.xpr");
+// [GUI Memory]: 40 MB (+3027kb) [00:00:38]
+// [Engine Memory]: 886 MB (+14351kb) [00:00:38]
+// Opening Vivado Project: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z015/dummy_7z015.xpr. Version: Vivado v2016.4 
+// bt:g (cd:JFrame):  Open Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z015/dummy_7z015.xpr 
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 975 MB (+47124kb) [00:00:40]
+// [GUI Memory]: 51 MB (+9448kb) [00:00:40]
+// Tcl Message: open_project /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z015/dummy_7z015.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from '/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z015' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2016.4/data/ip'. 
+// Project name: dummy_7z015; location: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z015; part: xc7z015clg485-1
+// 'i' command handler elapsed time: 33 seconds
+// [GUI Memory]: 58 MB (+4765kb) [00:00:41]
+dismissDialog("Open Project"); // bt:g (cd:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 998 MB. GUI used memory: 28 MB. Current time: 10/11/18 1:37:35 PM CEST
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// bt:g (cd:JFrame):  Open Implemented Design : addNotify
+// Tcl Message: open_run impl_1 
+// [Engine Memory]: 1,111 MB (+92203kb) [00:00:45]
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: POWER_CNS_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 1,179 MB. GUI used memory: 28 MB. Current time: 10/11/18 1:37:39 PM CEST
+// [Engine Memory]: 1,181 MB (+14360kb) [00:00:46]
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// [GUI Memory]: 70 MB (+8857kb) [00:00:47]
+// [Engine Memory]: 1,338 MB (+103104kb) [00:00:47]
+// Device: addNotify
+// DeviceView Instantiated
+// [GUI Memory]: 77 MB (+3639kb) [00:00:47]
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2016.4 INFO: [Device 21-403] Loading part xc7z015clg485-1 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Finished Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Reading XDEF placement. Reading placer database... Reading XDEF routing. 
+// Tcl Message: Read XDEF File: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 6193.844 ; gain = 0.000 ; free physical = 8050 ; free virtual = 27957 
+// Tcl Message: Restored from archive | CPU: 0.010000 secs | Memory: 0.077347 MB | 
+// Tcl Message: Finished XDEF File Restore: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 6193.844 ; gain = 0.000 ; free physical = 8050 ; free virtual = 27957 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// TclEventType: DRC_ADDED
+// TclEventType: METHODOLOGY_ADDED
+// Device view-level: 0.0
+// [GUI Memory]: 81 MB (+220kb) [00:00:48]
+// TclEventType: METHODOLOGY_ADDED
+// TclEventType: POWER_UPDATED
+// TclEventType: TIMING_SUMMARY_UPDATED
+// [GUI Memory]: 86 MB (+1057kb) [00:00:48]
+// 'dH' command handler elapsed time: 6 seconds
+dismissDialog("Open Implemented Design"); // bt:g (cd:JFrame)
+// RouteApi::initDelayMediator elapsed time: 6s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+// [Engine Memory]: 1,678 MB (+286668kb) [00:00:54]
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ab:JMenuItem (JPopupMenu:JComponent, Popup:JWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// Elapsed time: 18 seconds
+setFileChooser("/usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z014/dummy_7z014.xpr");
+// TclEventType: PROJECT_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,663 MB. GUI used memory: 57 MB. Current time: 10/11/18 1:38:09 PM CEST
+// TclEventType: TIMING_RESULTS_UNLOAD
+// Engine heap size: 1,663 MB. GUI used memory: 73 MB. Current time: 10/11/18 1:38:09 PM CEST
+// TclEventType: DESIGN_CLOSE
+// Opening Vivado Project: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z014/dummy_7z014.xpr. Version: Vivado v2016.4 
+// bt:g (cd:JFrame):  Open Project : addNotify
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_Yes", "Yes"); // JButton:AbstractButton (JPanel:JComponent, F:JDialog)
+// Tcl Message: close_project 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z014/dummy_7z014.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from '/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z014' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2016.4/data/ip'. 
+// Project name: dummy_7z014; location: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_7z014; part: xc7z014sclg400-2
+// 'i' command handler elapsed time: 22 seconds
+dismissDialog("Open Project"); // bt:g (cd:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// bt:g (cd:JFrame):  Open Implemented Design : addNotify
+// Tcl Message: open_run impl_1 
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: POWER_CNS_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 1,686 MB. GUI used memory: 32 MB. Current time: 10/11/18 1:38:17 PM CEST
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// [Engine Memory]: 1,804 MB (+43312kb) [00:01:24]
+// Device: addNotify
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2016.4 INFO: [Device 21-403] Loading part xc7z014sclg400-2 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Finished Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Reading XDEF placement. Reading placer database... Reading XDEF routing. 
+// Tcl Message: Read XDEF File: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 6689.734 ; gain = 0.000 ; free physical = 7467 ; free virtual = 27410 
+// Tcl Message: Restored from archive | CPU: 0.000000 secs | Memory: 0.062958 MB | 
+// Tcl Message: Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 6689.734 ; gain = 0.000 ; free physical = 7467 ; free virtual = 27410 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// TclEventType: DRC_ADDED
+// Device view-level: 0.0
+// TclEventType: DRC_ADDED
+// TclEventType: METHODOLOGY_ADDED
+// TclEventType: POWER_UPDATED
+// TclEventType: TIMING_SUMMARY_UPDATED
+// 'dH' command handler elapsed time: 4 seconds
+dismissDialog("Open Implemented Design"); // bt:g (cd:JFrame)
+// [GUI Memory]: 92 MB (+1788kb) [00:01:28]
+// [Engine Memory]: 2,107 MB (+223883kb) [00:01:30]
+// RouteApi::initDelayMediator elapsed time: 5.7s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Y:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Y:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Y:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ab:JMenuItem (JPopupMenu:JComponent, Popup:JWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// [GUI Memory]: 98 MB (+1478kb) [00:01:49]
+// Elapsed time: 36 seconds
+setFileChooser("/usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046/dummy_kintex_7046.xpr");
+// TclEventType: PROJECT_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,099 MB. GUI used memory: 55 MB. Current time: 10/11/18 1:39:13 PM CEST
+// TclEventType: TIMING_RESULTS_UNLOAD
+// Engine heap size: 2,099 MB. GUI used memory: 71 MB. Current time: 10/11/18 1:39:13 PM CEST
+// TclEventType: DESIGN_CLOSE
+// Opening Vivado Project: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046/dummy_kintex_7046.xpr. Version: Vivado v2016.4 
+// bt:g (cd:JFrame):  Open Project : addNotify
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_Yes", "Yes"); // JButton:AbstractButton (JPanel:JComponent, F:JDialog)
+// Tcl Message: close_project 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046/dummy_kintex_7046.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from '/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2016.4/data/ip'. 
+// Project name: dummy_kintex_7046; location: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046; part: xc7z045fbv676-1
+// 'i' command handler elapsed time: 40 seconds
+dismissDialog("Open Project"); // bt:g (cd:JFrame)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// bt:g (cd:JFrame):  Open Implemented Design : addNotify
+// Tcl Message: open_run impl_1 
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: POWER_CNS_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 2,197 MB. GUI used memory: 34 MB. Current time: 10/11/18 1:39:20 PM CEST
+// [Engine Memory]: 2,230 MB (+18048kb) [00:02:26]
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// Device: addNotify
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// TclEventType: DRC_ADDED
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2016.4 INFO: [Device 21-403] Loading part xc7z045fbv676-1 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Finished Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Reading XDEF placement. Reading placer database... Reading XDEF routing. 
+// Tcl Message: Read XDEF File: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 7195.570 ; gain = 0.000 ; free physical = 6935 ; free virtual = 26894 
+// Tcl Message: Restored from archive | CPU: 0.030000 secs | Memory: 1.321609 MB | 
+// Tcl Message: Finished XDEF File Restore: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 7195.570 ; gain = 0.000 ; free physical = 6935 ; free virtual = 26894 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// Device view-level: 0.0
+// TclEventType: DRC_ADDED
+// TclEventType: METHODOLOGY_ADDED
+// TclEventType: POWER_UPDATED
+// TclEventType: TIMING_SUMMARY_UPDATED
+// 'dH' command handler elapsed time: 5 seconds
+dismissDialog("Open Implemented Design"); // bt:g (cd:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// RouteApi::initDelayMediator elapsed time: 6.6s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// [Engine Memory]: 2,637 MB (+309411kb) [00:02:37]
+// Elapsed time: 12 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+// [GUI Memory]: 103 MB (+449kb) [00:02:41]
+// Elapsed time: 11 seconds
+selectButton(PAResourceCommand.PACommandNames_GENERAL_SETTINGS, "xc7z045fbv676-1"); // h:k (JPanel:JComponent, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_GENERAL_SETTINGS
+// Project Settings: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 2,676 MB. GUI used memory: 76 MB. Current time: 10/11/18 1:39:55 PM CEST
+// Elapsed time: 24 seconds
+selectMenuItem(RDIResourceCommand.RDICommands_COPY, "Copy"); // ab:JMenuItem (ah:JPopupMenu, i:aA)
+// Elapsed time: 69 seconds
+selectButton("CANCEL", "Cancel"); // JButton:AbstractButton (ButtonPanel:JPanel, i:aA)
+dismissDialog("Project Settings"); // i:aA (cd:JFrame)
+// Elapsed time: 11 seconds
+selectButton(PAResourceCommand.PACommandNames_GENERAL_SETTINGS, "xc7z045fbv676-1"); // h:k (JPanel:JComponent, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_GENERAL_SETTINGS
+// Project Settings: addNotify
+dismissDialog("Project Settings"); // i:aA (cd:JFrame)
+// [GUI Memory]: 109 MB (+269kb) [00:04:51]
+// [GUI Memory]: 119 MB (+5320kb) [00:05:00]
+// Elapsed time: 14 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// Elapsed time: 12 seconds
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, -382630, 638872); // J:a (JViewport:JComponent, cd:JFrame)
+// Elapsed time: 24 seconds
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Y:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Y:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ab:JMenuItem (JPopupMenu:JComponent, Popup:JWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// [GUI Memory]: 126 MB (+611kb) [00:05:44]
+// Elapsed time: 20 seconds
+setFileChooser("/usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/blink_led/project_1/project_1.xpr");
+// TclEventType: PROJECT_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,669 MB. GUI used memory: 65 MB. Current time: 10/11/18 1:42:55 PM CEST
+// TclEventType: TIMING_RESULTS_UNLOAD
+// Engine heap size: 2,669 MB. GUI used memory: 81 MB. Current time: 10/11/18 1:42:55 PM CEST
+// TclEventType: DESIGN_CLOSE
+// Opening Vivado Project: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/blink_led/project_1/project_1.xpr. Version: Vivado v2016.4 
+// bt:g (cd:JFrame):  Open Project : addNotify
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_Yes", "Yes"); // JButton:AbstractButton (JPanel:JComponent, F:JDialog)
+// Tcl Message: close_project 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/blink_led/project_1/project_1.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from '/home/holmes/xilinx/xilinx_16/blink_led/project_1' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2016.4/data/ip'. 
+// Project name: project_1; location: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/blink_led/project_1; part: xc7z010clg400-1
+// 'i' command handler elapsed time: 24 seconds
+dismissDialog("Open Project"); // bt:g (cd:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// a:a (cd:JFrame): Critical Messages: addNotify
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// bt:g (cd:JFrame):  Open Implemented Design : addNotify
+// Tcl Message: open_run impl_1 
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: POWER_CNS_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_REMOVE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 2,728 MB. GUI used memory: 39 MB. Current time: 10/11/18 1:43:03 PM CEST
+// TclEventType: DESIGN_NEW
+// [Engine Memory]: 2,774 MB (+5887kb) [00:06:10]
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// Device: addNotify
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 22 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2016.4 INFO: [Device 21-403] Loading part xc7z010clg400-1 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/blink_led_wrapper_early.xdc] 
+// Tcl Message: Finished Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/blink_led_wrapper_early.xdc] Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/blink_led_wrapper.xdc] Finished Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/blink_led_wrapper.xdc] Reading XDEF placement. Reading placer database... Reading XDEF routing. 
+// Tcl Message: Read XDEF File: Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.14 . Memory (MB): peak = 7720.062 ; gain = 0.000 ; free physical = 6235 ; free virtual = 26258 
+// Tcl Message: Restored from archive | CPU: 0.150000 secs | Memory: 2.307228 MB | 
+// Tcl Message: Finished XDEF File Restore: Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.14 . Memory (MB): peak = 7720.062 ; gain = 0.000 ; free physical = 6235 ; free virtual = 26258 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary:   A total of 4 instances were transformed.   IOBUF => IOBUF (IBUF, OBUFT): 4 instances  
+// TclEventType: DRC_ADDED
+// TclEventType: METHODOLOGY_ADDED
+// Device view-level: 0.0
+// TclEventType: METHODOLOGY_ADDED
+// TclEventType: POWER_UPDATED
+// TclEventType: TIMING_SUMMARY_UPDATED
+// 'dH' command handler elapsed time: 5 seconds
+// M:a (cd:JFrame): Critical Messages: addNotify
+dismissDialog("Open Implemented Design"); // bt:g (cd:JFrame)
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f:a (JPanel:JComponent, M:a)
+dismissDialog("Critical Messages"); // M:a (cd:JFrame)
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f:a (JPanel:JComponent, a:a)
+dismissDialog("Critical Messages"); // a:a (cd:JFrame)
+// RouteApi::initDelayMediator elapsed time: 5.3s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// [Engine Memory]: 3,128 MB (+225414kb) [00:06:18]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+// HMemoryUtils.trashcanNow. Engine heap size: 3,148 MB. GUI used memory: 75 MB. Current time: 10/11/18 1:46:45 PM CEST
+// Elapsed time: 435 seconds
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Y:JMenu (JPopupMenu:JComponent, Popup:JWindow)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ab:JMenuItem (JPopupMenu:JComponent, Popup:JWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // T:JideMenu (CommandMenuBar:CommandBar, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// Elapsed time: 28 seconds
+setFileChooser("/usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046/dummy_kintex_7046.xpr");
+// TclEventType: PROJECT_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,140 MB. GUI used memory: 60 MB. Current time: 10/11/18 1:50:59 PM CEST
+// TclEventType: TIMING_RESULTS_UNLOAD
+// Engine heap size: 3,140 MB. GUI used memory: 75 MB. Current time: 10/11/18 1:50:59 PM CEST
+// TclEventType: DESIGN_CLOSE
+// Opening Vivado Project: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046/dummy_kintex_7046.xpr. Version: Vivado v2016.4 
+// bt:g (cd:JFrame):  Open Project : addNotify
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_Yes", "Yes"); // JButton:AbstractButton (JPanel:JComponent, F:JDialog)
+// Tcl Message: close_project 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046/dummy_kintex_7046.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from '/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2016.4/data/ip'. 
+// Project name: dummy_kintex_7046; location: /usr/local/src/xilinx/home/holmes/xilinx/xilinx_16/verilog_projects/dummy_kintex_7046; part: xc7z045fbv676-1
+// 'i' command handler elapsed time: 30 seconds
+dismissDialog("Open Project"); // bt:g (cd:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// bt:g (cd:JFrame):  Open Implemented Design : addNotify
+// Tcl Message: open_run impl_1 
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: POWER_CNS_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 3,140 MB. GUI used memory: 39 MB. Current time: 10/11/18 1:51:04 PM CEST
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// Device: addNotify
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// TclEventType: DRC_ADDED
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2016.4 INFO: [Device 21-403] Loading part xc7z045fbv676-1 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Finished Parsing XDC File [/usr/local/src/floorplan/simulator/fp_visualizer/.Xil/Vivado-26735-sholmes-System-Product-Name/dcp/top_level.xdc] Reading XDEF placement. Reading placer database... Reading XDEF routing. 
+// Tcl Message: Read XDEF File: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 8138.508 ; gain = 0.000 ; free physical = 5645 ; free virtual = 25675 
+// Tcl Message: Restored from archive | CPU: 0.010000 secs | Memory: 0.065048 MB | 
+// Tcl Message: Finished XDEF File Restore: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 8138.508 ; gain = 0.000 ; free physical = 5645 ; free virtual = 25675 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// TclEventType: DRC_ADDED
+// TclEventType: METHODOLOGY_ADDED
+// Device view-level: 0.0
+// TclEventType: METHODOLOGY_ADDED
+// TclEventType: POWER_UPDATED
+// TclEventType: TIMING_SUMMARY_UPDATED
+dismissDialog("Open Implemented Design"); // bt:g (cd:JFrame)
+// Elapsed time: 12 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, Project Settings]", 1, false); // u:K (t:D, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_PROJECT_SETTINGS
+// Project Settings: addNotify
+// Elapsed time: 13 seconds
+selectButton("CANCEL", "Cancel"); // JButton:AbstractButton (ButtonPanel:JPanel, i:aA)
+dismissDialog("Project Settings"); // i:aA (cd:JFrame)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 36, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl Command: 'rdi::info_commands get_hw_probes'
+// Tcl Command: 'load_features labtools'
+// TclEventType: LOAD_FEATURE
+// TclEventType: HW_SESSION_OPEN
+// Tcl Message: open_hw 
+// Elapsed time: 14 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, Project Settings]", 1, false); // u:K (t:D, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_PROJECT_SETTINGS
+// Project Settings: addNotify
+setText(PAResourceOtoP.ProjectSettingsGeneralPage_DEFAULT_LIBRARY, "xil_defaultlib"); // ak:JTextField (JPanel:JComponent, i:aA)
+selectButton("CANCEL", "Cancel"); // JButton:AbstractButton (ButtonPanel:JPanel, i:aA)
+dismissDialog("Project Settings"); // i:aA (cd:JFrame)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+// [GUI Memory]: 133 MB (+737kb) [00:16:07]
+// Elapsed time: 97 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Implemented Design]", 22, true); // u:K (t:D, cd:JFrame) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 367517, 1034090); // J:a (JViewport:JComponent, cd:JFrame)
+// Device select: 'Clock Region - X0Y1'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 579, 539, 1210, 655); // X:I (k:TdiGroup, cd:JFrame)
+// DeviceOracle::getDeviceDataByteArray length(bytes): 184317
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 367517, 1034090, false, false, false, false, true); // J:a (JViewport:JComponent, cd:JFrame) - Double Click
+// Device select: 'Clock Region - X0Y1'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 579, 539, 1210, 655); // X:I (k:TdiGroup, cd:JFrame)
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 248568, 1137691); // J:a (JViewport:JComponent, cd:JFrame)
+// Device select: 'Clock Region - X0Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 514, 593, 1210, 655); // X:I (k:TdiGroup, cd:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 3,227 MB. GUI used memory: 84 MB. Current time: 10/11/18 1:53:34 PM CEST
+// DeviceOracle::getDeviceDataByteArray length(bytes): 184317
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 238976, 1137691); // J:a (JViewport:JComponent, cd:JFrame)
+// Device select: 'Clock Region - X0Y0'
+selectView(PAResourceOtoP.PAViews_DEVICE, "Device", 512, 593, 1210, 655); // X:I (k:TdiGroup, cd:JFrame)
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "Device_zoom_in"); // y:JideButton (g:CommandBar, cd:JFrame)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+// Device view-level: 0.6
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // F:H (Workspace:JPanel, cd:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 3,228 MB. GUI used memory: 125 MB. Current time: 10/11/18 1:53:46 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,228 MB. GUI used memory: 86 MB. Current time: 10/11/18 1:53:46 PM CEST
+selectGraphicalView(PAResourceOtoP.PAViews_DEVICE, 286939, 1210808); // J:a (JViewport:JComponent, cd:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 3,229 MB. GUI used memory: 112 MB. Current time: 10/11/18 1:54:02 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,229 MB. GUI used memory: 119 MB. Current time: 10/11/18 1:54:02 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,229 MB. GUI used memory: 119 MB. Current time: 10/11/18 1:54:03 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,229 MB. GUI used memory: 143 MB. Current time: 10/11/18 1:54:03 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,229 MB. GUI used memory: 140 MB. Current time: 10/11/18 1:54:03 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 118 MB. Current time: 10/11/18 1:54:03 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 154 MB. Current time: 10/11/18 1:54:04 PM CEST
+// [GUI Memory]: 181 MB (+43385kb) [00:17:10]
+// [Engine Memory]: 3,315 MB (+32425kb) [00:17:10]
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 185 MB. Current time: 10/11/18 1:54:04 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 185 MB. Current time: 10/11/18 1:54:05 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 182 MB. Current time: 10/11/18 1:54:05 PM CEST
+// [GUI Memory]: 193 MB (+2933kb) [00:17:24]
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 202 MB. Current time: 10/11/18 1:54:17 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,315 MB. GUI used memory: 226 MB. Current time: 10/11/18 1:54:17 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 121 MB. Current time: 10/11/18 1:54:18 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 122 MB. Current time: 10/11/18 1:54:18 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 122 MB. Current time: 10/11/18 1:54:18 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 154 MB. Current time: 10/11/18 1:54:24 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 183 MB. Current time: 10/11/18 1:54:25 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 213 MB. Current time: 10/11/18 1:54:27 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,330 MB. GUI used memory: 242 MB. Current time: 10/11/18 1:54:27 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,338 MB. GUI used memory: 145 MB. Current time: 10/11/18 1:54:27 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,338 MB. GUI used memory: 214 MB. Current time: 10/11/18 1:54:28 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,358 MB. GUI used memory: 128 MB. Current time: 10/11/18 1:54:28 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,358 MB. GUI used memory: 192 MB. Current time: 10/11/18 1:54:28 PM CEST
+// [GUI Memory]: 218 MB (+15816kb) [00:17:35]
+// HMemoryUtils.trashcanNow. Engine heap size: 3,358 MB. GUI used memory: 218 MB. Current time: 10/11/18 1:54:28 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,358 MB. GUI used memory: 250 MB. Current time: 10/11/18 1:54:28 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,372 MB. GUI used memory: 128 MB. Current time: 10/11/18 1:54:29 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,372 MB. GUI used memory: 153 MB. Current time: 10/11/18 1:54:50 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,372 MB. GUI used memory: 151 MB. Current time: 10/11/18 1:54:50 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,372 MB. GUI used memory: 193 MB. Current time: 10/11/18 1:54:51 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,372 MB. GUI used memory: 246 MB. Current time: 10/11/18 1:54:54 PM CEST
+// [GUI Memory]: 272 MB (+45810kb) [00:18:01]
+// HMemoryUtils.trashcanNow. Engine heap size: 3,372 MB. GUI used memory: 279 MB. Current time: 10/11/18 1:54:56 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,386 MB. GUI used memory: 150 MB. Current time: 10/11/18 1:54:57 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,386 MB. GUI used memory: 214 MB. Current time: 10/11/18 1:54:57 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,386 MB. GUI used memory: 246 MB. Current time: 10/11/18 1:54:57 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,386 MB. GUI used memory: 237 MB. Current time: 10/11/18 1:54:57 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,386 MB. GUI used memory: 259 MB. Current time: 10/11/18 1:54:58 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,386 MB. GUI used memory: 287 MB. Current time: 10/11/18 1:54:58 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 95 MB. Current time: 10/11/18 1:54:58 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 120 MB. Current time: 10/11/18 1:54:58 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 117 MB. Current time: 10/11/18 1:54:58 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 134 MB. Current time: 10/11/18 1:55:10 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 137 MB. Current time: 10/11/18 1:55:11 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 134 MB. Current time: 10/11/18 1:55:11 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,394 MB. GUI used memory: 142 MB. Current time: 10/11/18 1:55:14 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,395 MB. GUI used memory: 167 MB. Current time: 10/11/18 1:55:47 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,395 MB. GUI used memory: 183 MB. Current time: 10/11/18 1:55:47 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,395 MB. GUI used memory: 226 MB. Current time: 10/11/18 1:55:47 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,395 MB. GUI used memory: 279 MB. Current time: 10/11/18 1:55:48 PM CEST
+// [GUI Memory]: 310 MB (+25714kb) [00:18:54]
+// HMemoryUtils.trashcanNow. Engine heap size: 3,395 MB. GUI used memory: 314 MB. Current time: 10/11/18 1:55:48 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,395 MB. GUI used memory: 311 MB. Current time: 10/11/18 1:55:51 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,416 MB. GUI used memory: 86 MB. Current time: 10/11/18 1:58:05 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 3,416 MB. GUI used memory: 86 MB. Current time: 10/11/18 2:28:06 PM CEST
