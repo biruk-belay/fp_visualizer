@@ -27,9 +27,11 @@ SOURCES += \
         fp.cpp \
     fpga.cpp \
     csv_data_manipulator.cpp \
-    ../../engine/src/model_virtex.cpp \
-    ../../engine/src/model_zynq.cpp \
-    ../../engine/src/model_virtex_5.cpp
+    model_zynq.cpp \
+    model_virtex_5.cpp \
+    model_virtex.cpp\
+    model_pynq.cpp \
+    fine_grained.cpp
 
 LIBS += \
        -lgurobi_g++5.2\
@@ -41,8 +43,11 @@ HEADERS += \
         fpga.h \
     ../../engine/include/gurobi_c++.h \
     csv_data_manipulator.hpp \
-    ../../engine/include/zynq_model.h \
-    zynq_wrapper.hpp
+    zynq_wrapper.hpp \
+    paint.h \
+    zynq_model.h \
+    fine_grained.h \
+    generate_xdc.h
 
 FORMS += \
         fp.ui

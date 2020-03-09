@@ -13,7 +13,7 @@
 #define ZYNQ_CLB_MIN 10
 #define ZYNQ_BRAM_MIN 0
 #define ZYNQ_DSP_MIN 0
-#define ZYNQ_FORBIDDEN 4
+#define ZYNQ_FORBIDDEN 2
 #define ZYNQ_NUM_ROWS 10
 #define ZYNQ_WIDTH 29
 #define ZYNQ_CLK_REG 4
@@ -29,7 +29,6 @@
 #define ZYNQ_BRAM_PER_TILE 10
 #define ZYNQ_DSP_PER_TILE 20
 
-
 //parameters for virtex_5
 #define VIRTEX_5_CLB_TOT 8140
 #define VIRTEX_5_BRAM_TOT 160
@@ -41,6 +40,9 @@
 #define VIRTEX_5_FORBIDDEN 2
 #define VIRTEX_5_NUM_ROWS 4
 #define VIRTEX_5_WIDTH 62
+#define VIRTEX_5_CLB_PER_TILE 20
+#define VIRTEX_5_BRAM_PER_TILE 4
+#define VIRTEX_5_DSP_PER_TILE 8
 #define VIRTEX_5_CLK00_BRAM 2
 #define VIRTEX_5_CLK01_BRAM 2
 #define VIRTEX_5_CLK02_BRAM 2
@@ -74,7 +76,6 @@
 #define VIRTEX_5_CLK16_DSP 0
 #define VIRTEX_5_CLK17_DSP 0
 
-
 //parameters for virtex_7
 #define VIRTEX_CLB_TOT 21487
 #define VIRTEX_BRAM_TOT 500
@@ -86,6 +87,9 @@
 #define VIRTEX_NUM_ROWS 10
 #define VIRTEX_WIDTH 103
 #define VIRTEX_CLK_REG 14
+#define VIRTEX_CLB_PER_TILE 50
+#define VIRTEX_BRAM_PER_TILE 10
+#define VIRTEX_DSP_PER_TILE 20
 //bram descritpion on virtex
 #define VIRTEX_CLK00_BRAM 4
 #define VIRTEX_CLK01_BRAM 4
@@ -118,10 +122,12 @@
 
 //parameters for pynq
 #define PYNQ_CLK_REG 6
-#define PYNQ_WIDTH 71
+#define PYNQ_WIDTH 70
 #define PYNQ_NUM_ROWS 10
 #define PYNQ_FORBIDDEN 3
-
+#define PYNQ_CLB_PER_TILE 50
+#define PYNQ_BRAM_PER_TILE 10
+#define PYNQ_DSP_PER_TILE 20
 typedef struct {
     int x;
     int y;
@@ -140,25 +146,21 @@ typedef struct {
     int forbidden_num;
     int *bram_pos;
     int *dsp_pos;
-    pos forbidden_pos;
-    pos bram_pos_new;
 }fpga_clk_reg;
 
-#define init_clk_reg(id, pos, clb, bram, dsp, num_bram, num_dsp, num_forbidden, \
-                               pos_bram, pos_dsp, forbidden) \
+#define init_clk_reg(id, pos, clb, bram, dsp, num_bram, num_dsp,\
+                               pos_bram, pos_dsp) \
                                clk_reg[id].clk_reg_pos = pos;    \
                                clk_reg[id].clb_per_column = clb;\
                                clk_reg[id].bram_per_column = bram; \
                                clk_reg[id].dsp_per_column = dsp;  \
                                clk_reg[id].bram_num = num_bram;  \
                                clk_reg[id].dsp_num = num_dsp;\
-                               clk_reg[id].forbidden_num = num_forbidden;\
                                clk_reg[id].bram_pos = pos_bram;\
-                               clk_reg[id].dsp_pos = pos_dsp; \
-                               clk_reg[id].forbidden_pos = forbidden
+                               clk_reg[id].dsp_pos = pos_dsp;
 
 
-class fpga
+class zynq_7010
 {
 public:
     int clb_per_col  = ZYNQ_CLB_PER_TILE;
@@ -175,26 +177,22 @@ public:
     unsigned long num_rows = ZYNQ_NUM_ROWS;
     unsigned long width    = ZYNQ_WIDTH;
 
-    int bram_in_reg[ZYNQ_CLK_REG] = {1, 1, 2, 2};
-    int bram_pos[ZYNQ_CLK_REG][10] = {{3, 0, 0},  {3, 0, 0},
-                                     {17, 24, 0}, {17, 24, 0}};
+    int bram_in_reg[ZYNQ_CLK_REG] =  {1, 1, 2, 2};
+    int bram_pos[ZYNQ_CLK_REG][10] = {{4, 0, 0},  {4, 0, 0},
+                                     {18, 25, 0}, {18, 25, 0}};
 
     int dsp_in_reg[ZYNQ_CLK_REG] = {1, 1, 1, 1};
-    int dsp_pos[ZYNQ_CLK_REG][3] = {{6, 0, 0},
-                                    {6, 0, 0},
-                                    {21, 0, 0},
-                                    {21, 0, 0}};
+    int dsp_pos[ZYNQ_CLK_REG][3] = {{7, 0, 0},
+                                    {7, 0, 0},
+                                    {22, 0, 0},
+                                    {22, 0, 0}};
 
     unsigned long num_forbidden_slots = ZYNQ_FORBIDDEN;
-    pos fbdn_pos[ZYNQ_FORBIDDEN] =   {{9,  0,  1, 50},
-                                      {9,  50, 1, 50},
-                                      {14, 0,  1, 50},
-                                      {14, 50, 1, 50}};
-
-    int forbidden_regs[ZYNQ_CLK_REG] = {1, 1, 0, 0};
+    pos forbidden_pos[ZYNQ_FORBIDDEN] = {{9, 0, 1, 20},
+                                        {14, 0, 1, 20}};
 
     void initialize_clk_reg();
-    fpga();
+    zynq_7010();
 };
 
 class virtex
@@ -217,28 +215,30 @@ public:
                                        {55, 50,  54, 55},
                                        {55, 0,   54, 55}};
 
-    int clb_per_col  = 50;
-    int bram_per_col = 10;
-    int dsp_per_col  = 20;
+    int clb_per_col  = VIRTEX_CLB_PER_TILE;
+    int bram_per_col = VIRTEX_BRAM_PER_TILE;
+    int dsp_per_col  = VIRTEX_DSP_PER_TILE;
+
     unsigned long num_rows = VIRTEX_NUM_ROWS;
     unsigned long width = VIRTEX_WIDTH;
 
     int bram_in_reg[VIRTEX_CLK_REG] = {4, 4, 4, 4, 4, 2, 2, 4, 4, 4, 4, 5, 5, 5};
     int bram_pos[VIRTEX_CLK_REG][5] = {{4, 15, 20, 35}, {4, 15, 20, 35}, {4, 15, 20, 35},
-                                        {4, 15, 20, 35}, {4, 15, 20, 35}, {20, 35}, {20, 35}, {56, 73, 86, 92},
-                                        {56, 73, 86, 92}, {56, 73, 86, 92}, {56, 73, 86, 92},
-                                        {56, 73, 86, 92, 99}, {56, 73, 86, 92, 99}, {56, 73, 86, 92, 99}};
+                                        {4, 15, 20, 35}, {4, 15, 20, 35},
+                                        {20, 35}, {20, 35}, {56, 73, 86, 92},
+                                        {56, 73, 86, 92}, {56, 73, 86, 92},
+                                        {56, 73, 86, 92}, {56, 73, 86, 92, 99},
+                                        {56, 73, 86, 92, 99}, {56, 73, 86, 92, 99}
+                                      };
 
     int dsp_in_reg[VIRTEX_CLK_REG] = {4, 4, 4, 4, 4, 2, 2, 3, 3, 3, 3, 3, 3, 3};
-    int dsp_pos[VIRTEX_CLK_REG][5] = {{7, 12, 23, 32}, {7, 12, 23, 32}, {7, 12, 23, 32}, {7, 12, 23, 32},
-                                      {7, 12, 23, 32}, {23, 32}, {23, 32}, {59, 83, 95}, {59, 83, 95},
-                                      {59, 83, 95}, {59, 83, 95}, {59, 83, 95}, {59, 83, 95}, {59, 83, 95}};
+    int dsp_pos[VIRTEX_CLK_REG][5] = {{7, 12, 23, 32}, {7, 12, 23, 32}, {7, 12, 23, 32},
+                                      {7, 12, 23, 32}, {7, 12, 23, 32}, {23, 32},
+                                      {23, 32}, {59, 83, 95}, {59, 83, 95},
+                                      {59, 83, 95}, {59, 83, 95}, {59, 83, 95},
+                                      {59, 83, 95}, {59, 83, 95}};
 
     unsigned long num_forbidden_slots = VIRTEX_FORBIDDEN;
-    pos fbdn_pos[ZYNQ_FORBIDDEN + 1] =  {{10, 0, 1, ZYNQ_NUM_ROWS},
-                                         {15, 0, 1, ZYNQ_NUM_ROWS}};
-
-    int forbidden_regs[VIRTEX_CLK_REG] = {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 0, 1, 1};
     pos forbidden_pos[VIRTEX_FORBIDDEN] = {{0,   50,  18, 20},
                                            {74,  50,  8,  20},
                                            {89,  30,  4,  10},
@@ -272,17 +272,20 @@ public:
                                          {28, 0, 34, 20}};
 
 
-    int clb_per_col  = 20;
-    int bram_per_col = 4;
-    int dsp_per_col  = 8;
+    int clb_per_col  =  VIRTEX_5_CLB_PER_TILE;
+    int bram_per_col =  VIRTEX_5_BRAM_PER_TILE;
+    int dsp_per_col  =  VIRTEX_5_DSP_PER_TILE;
+
     unsigned long num_rows = VIRTEX_5_NUM_ROWS;
     unsigned long width = VIRTEX_5_WIDTH;
 
     int bram_in_reg[VIRTEX_5_CLK_REG] = {2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3};
 
-    int bram_pos[VIRTEX_5_CLK_REG][5] = {{4, 15}, {4, 15}, {4, 15}, {4, 15}, {4, 15}, {4, 15}, {4, 15}, {4, 15},
-                                         {40, 51, 62}, {40, 51, 62}, {40, 51, 62}, {40, 51, 62},
-                                         {40, 51, 62}, {40, 51, 62}, {40, 51, 62}, {40, 51, 62}};
+    int bram_pos[VIRTEX_5_CLK_REG][5] = {{4, 15}, {4, 15}, {4, 15}, {4, 15}, {4, 15},
+                                         {4, 15}, {4, 15}, {4, 15}, {40, 51, 62},
+                                         {40, 51, 62}, {40, 51, 62}, {40, 51, 62},
+                                         {40, 51, 62}, {40, 51, 62}, {40, 51, 62},
+                                         {40, 51, 62}};
 
     int dsp_in_reg[VIRTEX_5_CLK_REG] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -290,9 +293,6 @@ public:
                                         };
 
     unsigned long num_forbidden_slots = VIRTEX_5_FORBIDDEN;
-    pos fbdn_pos[VIRTEX_5_FORBIDDEN] =   {{10, 0, 1, ZYNQ_NUM_ROWS}};
-
-    int forbidden_regs[VIRTEX_5_CLK_REG] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
     pos forbidden_pos[VIRTEX_5_FORBIDDEN] = {{56, 0,  1, 80},
                                              {61, 20, 1, 30}};
 
@@ -312,31 +312,28 @@ public:
                                       {32, 0,  38, 50},
                                       {32, 50, 38, 50},
                                       {32, 100, 38, 50}};
-    int clb_per_col  = 50;
-    int bram_per_col = 10;
-    int dsp_per_col  = 20;
+
+    int clb_per_col  = PYNQ_CLB_PER_TILE;
+    int bram_per_col = PYNQ_BRAM_PER_TILE;
+    int dsp_per_col  = PYNQ_DSP_PER_TILE;
 
     unsigned long num_rows = PYNQ_NUM_ROWS;
     unsigned long width    = PYNQ_WIDTH;
 
     int bram_in_reg[PYNQ_CLK_REG]  = {1, 1, 3, 3, 3, 3};
-    int bram_pos[PYNQ_CLK_REG][10] = {{20, 0, 0}, {20, 0, 0}, {4, 15, 20},
-                                     {34, 54, 65}, {34, 54, 65}, {34, 54, 65}};
+    int bram_pos[PYNQ_CLK_REG][10] = {{21, 0, 0}, {21, 0, 0}, {5, 16, 21},
+                                     {35, 55, 66}, {35, 55, 66}, {35, 55, 66}};
 
     int dsp_in_reg[PYNQ_CLK_REG] = {1, 1, 3, 2, 2, 2};
-    int dsp_pos[PYNQ_CLK_REG][3] = {{23, 0, 0},
-                                    {23, 0, 0},
-                                    {7, 12, 23},
-                                    {57, 62, 0},
-                                    {57, 62, 0},
-                                    {57, 62, 0}};
+    int dsp_pos[PYNQ_CLK_REG][3] = {{24, 0, 0},
+                                    {24, 0, 0},
+                                    {8, 13, 24},
+                                    {58, 63, 0},
+                                    {58, 63, 0},
+                                    {58, 63, 0}};
 
     unsigned long num_forbidden_slots = PYNQ_FORBIDDEN;
-    pos fbdn_pos[ZYNQ_FORBIDDEN + 1] =  {{10, 10, 1, PYNQ_NUM_ROWS},
-                                         {15, 0, 1,  PYNQ_NUM_ROWS}};
-
-    int forbidden_regs[PYNQ_CLK_REG] =  {0, 1, 1, 1, 1, 1};
-    pos forbidden_pos[PYNQ_FORBIDDEN] = {{0, 10, 16, 20},
+    pos forbidden_pos[PYNQ_FORBIDDEN] = {{0, 10, 17, 20},
                                         {42, 10, 7,  20},
                                         {47, 0,  2,  10}};
 

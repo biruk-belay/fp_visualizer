@@ -9,7 +9,7 @@
 #include <QString>
 
 //#include "gurobi_c++.h"
-#include "../../engine/include/zynq_model.h"
+#include "zynq_model.h"
 #include "fpga.h"
 #include "csv_data_manipulator.hpp"
 
@@ -48,7 +48,7 @@ public:
     QTableWidget *table;
     QString file_path;
 
-    fpga *zynq;
+    zynq_7010 *zynq;
     virtex *virt;
     virtex_5 *virt_5;
     pynq *pynq_inst;
@@ -66,6 +66,10 @@ public:
     std::vector<unsigned long> bram_vector = std::vector<unsigned long>(MAX_SLOTS);
     std::vector<unsigned long> dsp_vector =  std::vector<unsigned long>(MAX_SLOTS);
 
+    std::vector<int> clb_from_solver  = std::vector<int>(MAX_SLOTS);
+    std::vector<int> bram_from_solver = std::vector<int>(MAX_SLOTS);
+    std::vector<int> dsp_from_solver  = std::vector<int>(MAX_SLOTS);
+
     std::vector<slot> sl_array = std::vector<slot>(MAX_SLOTS);
 
     vec_2d connection_matrix = std::vector<std::vector<unsigned long>> (MAX_SLOTS, std::vector<unsigned long> (MAX_SLOTS, 0));
@@ -76,7 +80,7 @@ public:
     std::vector<int> eng_h =  std::vector<int>(MAX_SLOTS);
 
     std::vector<int> x_vector =  std::vector<int>(MAX_SLOTS);
-    std::vector<int> y_vector = std::vector<int>(MAX_SLOTS);
+    std::vector<int> y_vector =  std::vector<int>(MAX_SLOTS);
     std::vector<int> w_vector =  std::vector<int>(MAX_SLOTS);
     std::vector<int> h_vector =  std::vector<int>(MAX_SLOTS);
 
@@ -90,7 +94,10 @@ public:
                                                   unsigned long n_max);
 
     param_from_solver from_solver = {&eng_x, &eng_y,
-                                   &eng_w, &eng_h};
+                                    &eng_w, &eng_h,
+                                    &clb_from_solver,
+                                    &bram_from_solver,
+                                    &dsp_from_solver};
 
     unsigned long clb_width = 10;
     unsigned long clb_height = 8, bram_height = 40, dsp_height = 20;
@@ -99,10 +106,6 @@ public:
     void init_fpga(enum fpga_type);
     void init_gui();
     void plot_rects(param_from_solver *);
-    void paint_zynq();
-    void paint_virtex();
-    void paint_virtex_5();
-    void paint_pynq();
     bool is_compatible(std::vector<slot> ptr, unsigned long slot_num, int max, unsigned long min, int type);
 
 private:
@@ -115,6 +118,7 @@ private slots:
     void set_browse();
     void fpga_pressed();
     void set_util();
+    void generate_xdc();
 };
 
 #endif // FP_H

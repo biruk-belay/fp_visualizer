@@ -251,6 +251,19 @@
     <string>Set</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="xdc">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>490</y>
+     <width>111</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>generate_xdc</string>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

@@ -1,11 +1,11 @@
 #include "fpga.h"
 
-fpga::fpga()
+zynq_7010::zynq_7010()
 {
-    fpga::initialize_clk_reg();
+    zynq_7010::initialize_clk_reg();
 }
 
-void fpga::initialize_clk_reg()
+void zynq_7010::initialize_clk_reg()
 {
     unsigned int i = 0;
 
@@ -13,8 +13,7 @@ void fpga::initialize_clk_reg()
      init_clk_reg(i, clk_reg_pos[i], clb_per_col,
                 bram_per_col, dsp_per_col,
                 bram_in_reg[i], dsp_in_reg[i],
-                forbidden_regs[i], bram_pos[i],
-                dsp_pos[i], fbdn_pos[i]);
+                bram_pos[i], dsp_pos[i]);
     }
 }
 
@@ -31,8 +30,7 @@ void virtex::initialize_clk_reg()
     init_clk_reg(i, clk_reg_pos[i], clb_per_col,
                 bram_per_col, dsp_per_col,
                 bram_in_reg[i], dsp_in_reg[i],
-                forbidden_regs[i], bram_pos[i],
-                dsp_pos[i], forbidden_pos[i]);
+                bram_pos[i], dsp_pos[i]);
     }
 }
 
@@ -49,8 +47,7 @@ void virtex_5::initialize_clk_reg()
     init_clk_reg(i, clk_reg_pos[i], clb_per_col,
                 bram_per_col, dsp_per_col,
                 bram_in_reg[i], dsp_in_reg[i],
-                forbidden_regs[i], bram_pos[i],
-                dsp_pos[i], forbidden_pos[i]);
+                bram_pos[i], dsp_pos[i]);
     }
 }
 
@@ -67,7 +64,6 @@ void pynq::initialize_clk_reg()
     init_clk_reg(i, clk_reg_pos[i], clb_per_col,
                 bram_per_col, dsp_per_col,
                 bram_in_reg[i], dsp_in_reg[i],
-                forbidden_regs[i], bram_pos[i],
-                dsp_pos[i], fbdn_pos[i]);
+                bram_pos[i], dsp_pos[i]);
     }
 }

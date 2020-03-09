@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <iostream>
 #include <string>
+#include "paint.h"
+#include "generate_xdc.h"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ fp::fp(QWidget *parent) :
 {
     unsigned long i;
     ui->setupUi(this);
-    zynq = new fpga();
+    zynq = new zynq_7010();
     virt = new virtex();
     virt_5 = new virtex_5();
     pynq_inst = new pynq();
@@ -38,6 +40,7 @@ fp::fp(QWidget *parent) :
     connect(ui->start_fp, SIGNAL(released()), this, SLOT(start_pressed()));
     connect(ui->browse_button, SIGNAL(released()), this, SLOT(set_browse()));
     connect(ui->set_util, SIGNAL(released()), this, SLOT(set_util()));
+    connect(ui->xdc, SIGNAL(released()), this, SLOT(generate_xdc()));
 
     for(i = 0; i < virt->num_forbidden_slots; i++)
         forbidden_region_virtex[i] = virt->forbidden_pos[i];
@@ -46,13 +49,12 @@ fp::fp(QWidget *parent) :
         forbidden_region_virtex_5[i] = virt_5->forbidden_pos[i];
 
     for(i = 0; i < zynq->num_forbidden_slots; i++) {
-        forbidden_region_zynq[i] = zynq->fbdn_pos[i];
+        forbidden_region_zynq[i] = zynq->forbidden_pos[i];
         //cout<< " fbdn" << forbidden_region_zynq[i].x << endl;
     }
 
     for(i = 0; i < pynq_inst->num_forbidden_slots; i++) {
-        forbidden_region_pynq[i] = pynq_inst->fbdn_pos[i];
-        //cout<< " fbdn" << forbidden_region_zynq[i].x << endl;
+        forbidden_region_pynq[i] = pynq_inst->forbidden_pos[i];
     }
 }
 
@@ -69,511 +71,59 @@ void fp::init_gui()
     ui->comboBox->addItem("pynq");
 }
 
-void fp::paint_virtex()
-{
-
-    int i, j, k;
-    int clk_reg_width, clk_reg_height;
-    int frame_height, frame_width;
-
-    int pos_ptr_x, pos_ptr_y, bram_pos_ptr, dsp_pos_ptr, forbdn_ptr;
-    int brams = 0, dsps = 0;
-    int bound, rec_height;
-    bool is_bram = false, is_dsp = false;
-
-    virtex_scale = 3;
-
-    QPen clk_reg_pen, rec_pen;
-    QBrush br(Qt::black);
-
-    fp::clb_height = 6;
-    fp::bram_height = 30;
-    fp::dsp_height = 15;
-
-    Qt::GlobalColor colors [] = {Qt::GlobalColor::red, Qt::GlobalColor::magenta,
-                                 Qt::GlobalColor::blue, Qt::GlobalColor::cyan,
-                                 Qt::GlobalColor::yellow};
-
-    total_height = virt->num_rows * bram_height * virt->num_clk_reg / 2;
-    //cout << "virt " << total_height << " " << virt->num_clk_reg << endl;
-
-    frame_height = ui->graphicsView->geometry().height();
-    frame_width = ui->graphicsView->geometry().width();
-
-    for(i = 0; i < virt->num_clk_reg ; i++) {
-        clk_reg_width = virt->clk_reg[i].clk_reg_pos.w * clb_width;
-        clk_reg_height = virt->clk_reg[i].clb_per_column * clb_height;
-
-       // cout << "height" << clk_reg_height << " " << clk_reg_width << endl;
-        bram_pos_ptr =  0; //zynq.clk_reg[i].bram_num;
-        dsp_pos_ptr = 0;
-        forbdn_ptr = 0;
-
-        pos_ptr_x = virt->clk_reg[i].clk_reg_pos.x;
-        pos_ptr_y = virt->clk_reg[i].clk_reg_pos.y;
-        brams = virt->clk_reg[i].bram_num;
-
-        //cout << "brams " << brams <<endl;
-        dsps = virt->clk_reg[i].dsp_num;
-  //      forbdns = virt->clk_reg[i].forbidden_num;
-
-
-        if(brams > 0)
-            is_bram = true;
-
-        if(dsps > 0)
-            is_dsp = true;
-
-        clk_reg_pen.setColor(colors[2]);
-        clk_reg_pen.setWidth(2);
-
-        fp_rect = scene.addRect((virt->clk_reg[i].clk_reg_pos.x * clb_width) / virtex_scale,
-                (virt->clk_reg[i].clk_reg_pos.y * clb_height) / virtex_scale,
-                clk_reg_width / virtex_scale, clk_reg_height / virtex_scale, clk_reg_pen, brush);
-
-        for(j = 0; j < virt->clk_reg[i].clk_reg_pos.w; j++) {
-            rec_height = clb_height;
-            bound = virt->clk_reg[i].clb_per_column;
-            rec_pen.setColor(Qt::blue);
-            rec_pen.setWidth(1);
-
-            if(is_bram) {
-                if(pos_ptr_x + j + 1 == virt->clk_reg[i].bram_pos[bram_pos_ptr]) {
-                    rec_pen.setColor(Qt::red);
-                    bound = virt->clk_reg[i].bram_per_column;
-                    rec_height = bram_height;
-
-                if(brams - 1 !=  0)
-                    bram_pos_ptr += 1;
-                else
-                    is_bram = false;
-                }
-            }
-
-            if(is_dsp) {
-                if(pos_ptr_x + j + 1 == virt->clk_reg[i].dsp_pos[dsp_pos_ptr]) {
-                    rec_pen.setColor(Qt::green);
-                    bound = virt->clk_reg[i].dsp_per_column;
-                    rec_height = dsp_height;
-
-                if(dsps - 1 !=  0)
-                    dsp_pos_ptr += 1;
-                else
-                    is_dsp = false;
-                }
-            }
-
-            for(k = 0; k < bound; k++) {
-                fp_rect = scene.addRect((pos_ptr_x * clb_width +  j * clb_width) / virtex_scale,
-                                         (pos_ptr_y * clb_height + k * rec_height) / virtex_scale,
-                                        clb_width / virtex_scale, rec_height / virtex_scale, rec_pen, brush);
-            }
-
-            scene.setBackgroundBrush(fp::brush_background);
-        }
-    }
-
-    for(i = 0; i < virt->num_forbidden_slots; i++) {
-        rec_pen.setColor(Qt::black);
-        fp_rect = scene.addRect((virt->forbidden_pos[i].x * clb_width) / 3,
-                                (((60 - virt->forbidden_pos[i].y - virt->forbidden_pos[i].h + 10) * clb_height) * 5)/ 3 ,
-                                (virt->forbidden_pos[i].w * clb_width) / 3,
-                                (virt->forbidden_pos[i].h * clb_height * 5)/ 3, rec_pen, br);
-    }
-}
-
-void fp::paint_virtex_5()
-{
-
-    int i, j, k;
-    int clk_reg_width, clk_reg_height;
-    int frame_height, frame_width;
-
-    int pos_ptr_x, pos_ptr_y, bram_pos_ptr, dsp_pos_ptr, forbdn_ptr;
-    int brams = 0, dsps = 0, forbdns;
-    int bound, rec_height;
-    bool is_bram = false, is_dsp = false, is_forbidden = false;
-
-    QPen clk_reg_pen, rec_pen;
-    QBrush br(Qt::black);
-
-    fp::clb_height = 8;
-    fp::bram_height = 40;
-    fp::dsp_height = 20;
-
-    virtex_scale = 2;
-
-    Qt::GlobalColor colors [] = {Qt::GlobalColor::red, Qt::GlobalColor::magenta,
-                                 Qt::GlobalColor::blue, Qt::GlobalColor::cyan,
-                                 Qt::GlobalColor::yellow};
-
-    total_height = virt_5->num_rows * bram_height * virt_5->num_clk_reg / 2;
-    //cout << "virt " << total_height << " " << virt->num_clk_reg << endl;
-
-    frame_height = ui->graphicsView->geometry().height();
-    frame_width = ui->graphicsView->geometry().width();
-
-    for(i = 0; i < virt_5->num_clk_reg ; i++) {
-        clk_reg_width = virt_5->clk_reg[i].clk_reg_pos.w * clb_width;
-        clk_reg_height = virt_5->clk_reg[i].clb_per_column * clb_height;
-
-       // cout << "height" << clk_reg_height << " " << clk_reg_width << endl;
-        bram_pos_ptr =  0; //zynq.clk_reg[i].bram_num;
-        dsp_pos_ptr = 0;
-        forbdn_ptr = 0;
-
-        pos_ptr_x = virt_5->clk_reg[i].clk_reg_pos.x;
-        pos_ptr_y = virt_5->clk_reg[i].clk_reg_pos.y;
-        brams = virt_5->clk_reg[i].bram_num;
-
-        //cout << "brams " << brams <<endl;
-        dsps = virt_5->clk_reg[i].dsp_num;
-  //      forbdns = virt->clk_reg[i].forbidden_num;
-
-
-        if(brams > 0)
-            is_bram = true;
-
-        if(dsps > 0)
-            is_dsp = true;
-
-/*
-        if(forbdns > 0)
-            is_forbidden = true;
-*/
-
-        clk_reg_pen.setColor(colors[2]);
-        clk_reg_pen.setWidth(2);
-
-        fp_rect = scene.addRect((virt_5->clk_reg[i].clk_reg_pos.x * clb_width) / virtex_scale,
-                (virt_5->clk_reg[i].clk_reg_pos.y * clb_height) / virtex_scale,
-                clk_reg_width / virtex_scale, clk_reg_height / virtex_scale, clk_reg_pen, brush);
-
-        for(j = 0; j < virt_5->clk_reg[i].clk_reg_pos.w; j++) {
-            rec_height = clb_height;
-            bound = virt_5->clk_reg[i].clb_per_column;
-            rec_pen.setColor(Qt::blue);
-            rec_pen.setWidth(1);
-
-            if(is_bram) {
-                if(pos_ptr_x + j + 1 == virt_5->clk_reg[i].bram_pos[bram_pos_ptr]) {
-                    rec_pen.setColor(Qt::red);
-                    bound = virt_5->clk_reg[i].bram_per_column;
-                    rec_height = bram_height;
-
-                if(brams - 1 !=  0)
-                    bram_pos_ptr += 1;
-                else
-                    is_bram = false;
-                }
-            }
-
-            if(is_dsp) {
-                if(pos_ptr_x + j + 1 == virt_5->clk_reg[i].dsp_pos[dsp_pos_ptr]) {
-                    rec_pen.setColor(Qt::green);
-                    bound = virt_5->clk_reg[i].dsp_per_column;
-                    rec_height = dsp_height;
-
-                if(dsps - 1 !=  0)
-                    dsp_pos_ptr += 1;
-                else
-                    is_dsp = false;
-                }
-            }
-
-
-            for(k = 0; k < bound; k++) {
-                fp_rect = scene.addRect((pos_ptr_x * clb_width +  j * clb_width) / virtex_scale,
-                                         (pos_ptr_y * clb_height + k * rec_height) / virtex_scale,
-                                        clb_width / virtex_scale, rec_height / virtex_scale, rec_pen, brush);
-            }
-
-            scene.setBackgroundBrush(fp::brush_background);
-        }
-    }
-
-    for(i = 0; i < virt_5->num_forbidden_slots; i++) {
-        rec_pen.setColor(Qt::black);
-        fp_rect = scene.addRect((virt_5->forbidden_pos[i].x * clb_width) / virtex_scale,
-                                (((70 - virt_5->forbidden_pos[i].y - virt_5->forbidden_pos[i].h + 10) * clb_height) * 2)/ virtex_scale,
-                                (virt_5->forbidden_pos[i].w * clb_width) / virtex_scale,
-                                (virt_5->forbidden_pos[i].h * clb_height * 2)/ virtex_scale, rec_pen, br);
-    }
-
-}
-
 //this function first plots the FPGA visualizer
-void fp::paint_pynq()
-{
-    int i, j, k;
-    int clk_reg_width, clk_reg_height;
-
-    int pos_ptr_x, pos_ptr_y, bram_pos_ptr, dsp_pos_ptr, forbdn_ptr;
-    int brams = 0, dsps = 0, forbdns;
-    int bound, rec_height;
-    bool is_bram = false, is_dsp = false, is_forbidden = false;
-
-    virtex_scale = 2;
-    QPen clk_reg_pen, rec_pen;
-    QBrush br(Qt::black);
-
-    fp::clb_height = 6;
-    fp::bram_height = 30;
-    fp::dsp_height = 15;
-
-    Qt::GlobalColor colors [] = {Qt::GlobalColor::red, Qt::GlobalColor::magenta,
-                                 Qt::GlobalColor::blue, Qt::GlobalColor::cyan,
-                                 Qt::GlobalColor::yellow};
-
-    total_height = pynq_inst->num_rows * bram_height * pynq_inst->num_clk_reg / 2;
-
-    for(i = 0; i < pynq_inst->num_clk_reg ; i++) {
-        clk_reg_width = pynq_inst->clk_reg[i].clk_reg_pos.w * clb_width;
-        clk_reg_height = pynq_inst->clk_reg[i].clb_per_column * clb_height;
-
-        bram_pos_ptr =  0; //zynq.clk_reg[i].bram_num;
-        dsp_pos_ptr = 0;
-        forbdn_ptr = 0;
-
-        pos_ptr_x = pynq_inst->clk_reg[i].clk_reg_pos.x;
-        pos_ptr_y = pynq_inst->clk_reg[i].clk_reg_pos.y;
-        brams = pynq_inst->clk_reg[i].bram_num;
-        dsps = pynq_inst->clk_reg[i].dsp_num;
-        forbdns = pynq_inst->clk_reg[i].forbidden_num;
-
-        if(brams > 0)
-            is_bram = true;
-
-        if(dsps > 0)
-            is_dsp = true;
-
-        if(forbdns > 0)
-            is_forbidden = true;
-
-        QPen clk_reg_pen(colors[i]);
-        clk_reg_pen.setWidth(2);
-
-        fp_rect = scene.addRect(pynq_inst->clk_reg[i].clk_reg_pos.x * clb_width,
-                pynq_inst->clk_reg[i].clk_reg_pos.y * clb_height,
-                clk_reg_width, clk_reg_height, clk_reg_pen, brush);
-
-        for(j = 0; j < pynq_inst->clk_reg[i].clk_reg_pos.w; j++) {
-            rec_height = clb_height;
-            bound = pynq_inst->clk_reg[i].clb_per_column;
-            rec_pen.setColor(Qt::blue);
-            rec_pen.setWidth(1);
-
-            if(is_bram) {
-                if(pos_ptr_x + j == pynq_inst->clk_reg[i].bram_pos[bram_pos_ptr]) {
-                    rec_pen.setColor(Qt::red);
-                    bound = pynq_inst->clk_reg[i].bram_per_column;
-                    rec_height = bram_height;
-
-                if(brams - 1 !=  0)
-                    bram_pos_ptr += 1;
-                else
-                    is_bram = false;
-                }
-            }
-
-            if(is_dsp) {
-                if(pos_ptr_x + j == pynq_inst->clk_reg[i].dsp_pos[dsp_pos_ptr]) {
-                    rec_pen.setColor(Qt::green);
-                    bound = pynq_inst->clk_reg[i].dsp_per_column;
-                    rec_height = dsp_height;
-
-                if(dsps - 1 !=  0)
-                    dsp_pos_ptr += 1;
-                else
-                    is_dsp = false;
-                }
-            }
-
-            for(k = 0; k < bound; k++) {
-                fp_rect = scene.addRect(pos_ptr_x * clb_width +  j * clb_width,
-                                         pos_ptr_y * clb_height + k * rec_height,
-                                        clb_width, rec_height, rec_pen, brush);
-            }
-        }
-    }
-
-/*
-    for(i = 0; i < pynq_inst->num_forbidden_slots; i++) {
-        rec_pen.setColor(Qt::black);
-        fp_rect = scene.addRect((pynq_inst->forbidden_pos[i].x * clb_width) / 3,
-                                (((20 - pynq_inst->forbidden_pos[i].y - pynq_inst->forbidden_pos[i].h + 10) * clb_height) * 5)/ 3 ,
-                                (pynq_inst->forbidden_pos[i].w * clb_width) / 3,
-                                (pynq_inst->forbidden_pos[i].h * clb_height * 5)/ 3, rec_pen, br);
-    }
-*/
-    for(i = 0; i < pynq_inst->num_forbidden_slots; i++) {
-        rec_pen.setColor(Qt::black);
-        fp_rect = scene.addRect((pynq_inst->forbidden_pos[i].x * clb_width),
-                                (((20 - pynq_inst->forbidden_pos[i].y - pynq_inst->forbidden_pos[i].h + 10) * clb_height) * 5),
-                                (pynq_inst->forbidden_pos[i].w * clb_width),
-                                (pynq_inst->forbidden_pos[i].h * clb_height * 5), rec_pen, br);
-    }
-}
-
-void fp::paint_zynq()
-{
-    int i, j, k;
-    int clk_reg_width, clk_reg_height;
-
-    int pos_ptr_x, pos_ptr_y, bram_pos_ptr, dsp_pos_ptr, forbdn_ptr;
-    int brams = 0, dsps = 0, forbdns;
-    int bound, rec_height;
-    bool is_bram = false, is_dsp = false, is_forbidden = false;
-
-    QPen clk_reg_pen, rec_pen;
-    QBrush br(Qt::black);
-
-    fp::clb_height = 8;
-    fp::bram_height = 40;
-    fp::dsp_height = 20;
-
-    Qt::GlobalColor colors [] = {Qt::GlobalColor::red, Qt::GlobalColor::magenta,
-                                 Qt::GlobalColor::blue, Qt::GlobalColor::cyan,
-                                 Qt::GlobalColor::yellow};
-
-    total_height = zynq->num_rows * bram_height * zynq->num_clk_reg / 2;
-
-    for(i = 0; i < zynq->num_clk_reg ; i++) {
-        clk_reg_width = zynq->clk_reg[i].clk_reg_pos.w * clb_width;
-        clk_reg_height = zynq->clk_reg[i].clb_per_column * clb_height;
-
-        bram_pos_ptr = 0; //zynq.clk_reg[i].bram_num;
-        dsp_pos_ptr  = 0;
-        forbdn_ptr   = 0;
-
-        pos_ptr_x = zynq->clk_reg[i].clk_reg_pos.x;
-        pos_ptr_y = zynq->clk_reg[i].clk_reg_pos.y;
-        brams = zynq->clk_reg[i].bram_num;
-        dsps = zynq->clk_reg[i].dsp_num;
-        forbdns = zynq->clk_reg[i].forbidden_num;
-
-        if(brams > 0)
-            is_bram = true;
-
-        if(dsps > 0)
-            is_dsp = true;
-
-        if(forbdns > 0)
-            is_forbidden = true;
-
-        QPen clk_reg_pen(colors[i]);
-        clk_reg_pen.setWidth(2);
-
-        fp_rect = scene.addRect(zynq->clk_reg[i].clk_reg_pos.x * clb_width,
-                zynq->clk_reg[i].clk_reg_pos.y * clb_height,
-                clk_reg_width, clk_reg_height, clk_reg_pen, brush);
-
-        for(j = 0; j < zynq->clk_reg[i].clk_reg_pos.w; j++) {
-            rec_height = clb_height;
-            bound = zynq->clk_reg[i].clb_per_column;
-            rec_pen.setColor(Qt::blue);
-            rec_pen.setWidth(1);
-
-            if(is_bram) {
-                if(pos_ptr_x + j == zynq->clk_reg[i].bram_pos[bram_pos_ptr]) {
-                    rec_pen.setColor(Qt::red);
-                    bound = zynq->clk_reg[i].bram_per_column;
-                    rec_height = bram_height;
-
-                if(brams - 1 !=  0)
-                    bram_pos_ptr += 1;
-                else
-                    is_bram = false;
-                }
-            }
-
-            if(is_dsp) {
-                if(pos_ptr_x + j == zynq->clk_reg[i].dsp_pos[dsp_pos_ptr]) {
-                    rec_pen.setColor(Qt::green);
-                    bound = zynq->clk_reg[i].dsp_per_column;
-                    rec_height = dsp_height;
-
-                if(dsps - 1 !=  0)
-                    dsp_pos_ptr += 1;
-                else
-                    is_dsp = false;
-                }
-            }
-
-            for(k = 0; k < bound; k++) {
-                fp_rect = scene.addRect(pos_ptr_x * clb_width +  j * clb_width,
-                                         pos_ptr_y * clb_height + k * rec_height,
-                                        clb_width, rec_height, rec_pen, brush);
-            }
-        }
-    }
-
-
-    for(i = 0; i < zynq->num_forbidden_slots; i++) {
-        //rec_pen.setColor(Qt::black);
-        fp_rect = scene.addRect((zynq->fbdn_pos[i].x * clb_width),
-                                (zynq->fbdn_pos[i].y * clb_height) ,
-                                (zynq->fbdn_pos[i].w * clb_width) ,
-                                (zynq->fbdn_pos[i].h * clb_height), rec_pen, br);
-
-    }
-}
-
 void fp::fpga_pressed()
 {
     if(ui->comboBox->currentText() == "Zynq") {
         type = ZYNQ;
-        fp::clb_height = 8;
-        fp::bram_height = 40;
-        fp::dsp_height = 20;
+        //fp::clb_height = 8;
+        //fp::bram_height = 40;
+        //fp::dsp_height = 20;
         scene.clear();
-        paint_zynq();
-
+        paint(ZYNQ, zynq);
         qDebug() << "selected zynq" << endl;
     }
     else if(ui->comboBox->currentText() == "Virtex") {
         type = VIRTEX;
-        fp::clb_height = 6;
-        fp::bram_height = 30;
-        fp::dsp_height = 15;
+        //fp::clb_height = 6;
+        //fp::bram_height = 30;
+        //fp::dsp_height = 15;
         scene.clear();
         qDebug() << "selected virtex" << endl;
-        paint_virtex();
+        paint(VIRTEX, virt);
     }
 
     else if(ui->comboBox->currentText() == "virtex_5") {
         type = VIRTEX_5;
-        fp::clb_height = 8;
-        fp::bram_height = 40;
-        fp::dsp_height = 20;
+        //fp::clb_height = 8;
+        //fp::bram_height = 40;
+        //fp::dsp_height = 20;
         scene.clear();
         qDebug() << "selected virtex 5" << endl;
-        paint_virtex_5();
+        paint(VIRTEX_5, virt_5);
     }
 
     else if(ui->comboBox->currentText() == "pynq") {
         type = PYNQ;
-        fp::clb_height = 6;
-        fp::bram_height = 30;
-        fp::dsp_height = 15;
+        //fp::clb_height = 6;
+        //fp::bram_height = 30;
+        //fp::dsp_height = 15;
         scene.clear();
-        paint_pynq();
-
+        paint(PYNQ, pynq_inst);
         qDebug() << "selected zynq" << endl;
     }
-
 }
 
 void fp::set_pressed()
 {
-     unsigned long int i;
+     unsigned long int p;
 
      str = ui->num_slotsLineEdit_2->text();
      num_slots = (unsigned long) str.toInt();
      ui->comboBox_2->clear();
 
-     for(i = 0; i < num_slots; i++) {
-        ui->comboBox_2->addItem(QString::number(i));
+     for(p = 0; p < num_slots; p++) {
+        ui->comboBox_2->addItem(QString::number(p));
      }
 
      if(num_slots > 0) {
@@ -593,14 +143,18 @@ void fp::set_pressed()
      }
 
      scene.clear();
-     if(type == ZYNQ)
-        paint_zynq();
-
-     else if(type == VIRTEX)
-        paint_virtex();
-
-     else if(type == VIRTEX_5)
-         paint_virtex_5();
+     if(type == ZYNQ) {
+        paint(ZYNQ, zynq);
+     }
+     else if(type == VIRTEX) {
+        paint(VIRTEX, virt);
+    }
+     else if(type == VIRTEX_5) {
+         paint(VIRTEX_5, virt_5);
+     }
+     else if(type == PYNQ) {
+         paint(PYNQ, pynq_inst);
+     }
 }
 
 void fp::enter_pressed()
@@ -639,22 +193,31 @@ void fp::start_pressed()
     param.conn_vector = &connection_matrix;
 
     scene.clear();
-    if(type == ZYNQ)
-       paint_zynq();
-    else if(type == VIRTEX)
-       paint_virtex();
+    if(type == ZYNQ) {
+      paint(ZYNQ, zynq);
+    }
+    else if(type == VIRTEX) {
+       paint(VIRTEX, virt);
+    }
 
-    else if(type == VIRTEX_5)
-       paint_virtex_5();
-
+    else if(type == VIRTEX_5){
+       paint(VIRTEX_5, virt_5);
+    }
+    else if(type == PYNQ) {
+        paint(PYNQ, pynq_inst);
+    }
     if(type == VIRTEX) {
         param.forbidden_slots = virt->num_forbidden_slots;
         param.num_rows = virt->num_rows;
         param.width = virt->width;
         param.fbdn_slot = &forbidden_region_virtex;
+        param.num_clk_regs = virt->num_clk_reg / 2;
+        param.clb_per_tile = VIRTEX_CLB_PER_TILE;
+        param.bram_per_tile = VIRTEX_BRAM_PER_TILE;
+        param.dsp_per_tile = VIRTEX_DSP_PER_TILE;
 
         virtex_start_optimizer(&param, &from_solver);
-        scale = 3;
+        scale = 2;
     }
 
     if(type ==ZYNQ) {
@@ -662,6 +225,10 @@ void fp::start_pressed()
         param.num_rows = zynq->num_rows;
         param.width = zynq->width;
         param.fbdn_slot = &forbidden_region_zynq;
+        param.num_clk_regs  = zynq->num_clk_reg /2;
+        param.clb_per_tile  = ZYNQ_CLB_PER_TILE;
+        param.bram_per_tile = ZYNQ_BRAM_PER_TILE;
+        param.dsp_per_tile  = ZYNQ_DSP_PER_TILE;
 
         scale = 1;
         zynq_start_optimizer(&param, &from_solver);
@@ -672,9 +239,27 @@ void fp::start_pressed()
         param.num_rows = virt_5->num_rows;
         param.width = virt_5->width;
         param.fbdn_slot = &forbidden_region_virtex_5;
+        param.num_clk_regs = virt_5->num_clk_reg /2;
+        param.clb_per_tile = VIRTEX_5_CLB_PER_TILE;
+        param.bram_per_tile = VIRTEX_5_BRAM_PER_TILE;
+        param.dsp_per_tile = VIRTEX_5_DSP_PER_TILE;
 
          virtex_start_optimizer_v5(&param, &from_solver);
         scale = 2;
+    }
+
+    if(type ==PYNQ) {
+        param.forbidden_slots = pynq_inst->num_forbidden_slots;
+        param.num_rows = pynq_inst->num_rows;
+        param.width = pynq_inst->width;
+        param.fbdn_slot = &forbidden_region_pynq;
+        param.num_clk_regs = pynq_inst->num_clk_reg /2;
+        param.clb_per_tile = PYNQ_CLB_PER_TILE;
+        param.bram_per_tile = PYNQ_BRAM_PER_TILE;
+        param.dsp_per_tile = PYNQ_DSP_PER_TILE;
+
+        scale = 1;
+        pynq_start_optimizer(&param, &from_solver);
     }
 
     //calibrate the data returned from optimizer for visualization
@@ -693,8 +278,6 @@ void fp::start_pressed()
 void fp::plot_rects(param_from_solver *fs)
 {
     unsigned long int i;
-
-    //qDebug() <<"total height" << total_height <<endl;
 
     /*The information about the total height must be integral part of the FPGA description*/
     for(i = 0; i < num_slots; i++) {
@@ -745,17 +328,19 @@ void fp::set_browse()
                 connection_matrix[ptr][k] = std::stoi(str);
             }
         }
+       connections = row - num_slots - 1;
     }
+    else
+        connections = 0;
 
-    connections = row - num_slots - 1;
-
-    for(i = num_slots + 1, ptr = 0, k = 0; i < row; i++, ptr++){
-        for(k = 0; k < 3; k++) {
-            cout << connection_matrix[ptr][k] << " " ;
+    if(connections > 0) {
+        for(i = num_slots + 1, ptr = 0, k = 0; i < row; i++, ptr++){
+            for(k = 0; k < 3; k++) {
+                cout << connection_matrix[ptr][k] << " " ;
+            }
+            cout << endl;
         }
-        cout << endl;
     }
-
     cout << "connectons " << connections <<endl;
 }
 
@@ -894,46 +479,20 @@ vector<unsigned long> fp::get_units_per_task(unsigned long n, unsigned long n_un
     return ret;
 }
 
-/*
-bool fp::is_compatible(std::vector<slot> ptr, unsigned long slot_num, int max, unsigned long min, int type)
+void fp::generate_xdc()
 {
-    unsigned long i, temp = 0;
-    unsigned long bram_max, dsp_max;
+    param_from_solver *from_sol_ptr = &from_solver;
 
-    if(fp::type == ZYNQ) {
-        bram_max = ZYNQ_BRAM_TOT / 4;
-        dsp_max = ZYNQ_DSP_TOT / 4;
-    }
-    else{
-        bram_max = 50; //VIRTEX_BRAM_TOT / 20;
-        dsp_max = 100; //VIRTEX_DSP_TOT / 20;
+    if(type == ZYNQ) {
+        zynq_fine_grained *fg_zynq_instance = new zynq_fine_grained();
+        generate_xdc_file(fg_zynq_instance, from_sol_ptr, param, num_slots);
     }
 
-    for(i = 0; i < slot_num; i++) {
-        if(type == CLB) {
-            if((ptr[i]).clb < min)
-                return true;
-            temp += (ptr[i]).clb;
-        }
-
-        else if (type == BRAM){
-            if((ptr[i]).bram < min || (ptr[i]).bram > bram_max)
-                return true;
-            temp += (ptr[i]).bram;
-        }
-        else {
-            if((ptr[i]).dsp < min || (ptr[i]).dsp > dsp_max)
-                return true;
-            temp += (ptr[i]).dsp;
-        }
+    else if(type ==PYNQ) {
+        pynq_fine_grained *fg_pynq_instance = new pynq_fine_grained();
+        generate_xdc_file(fg_pynq_instance, from_sol_ptr, param, num_slots);
     }
 
-    if(temp >= (int) max * utilization) {
-            return true;
-    }
-    else {
-        qDebug() << "total " << type << " " << temp << endl;
-        return false;
-    }
+
+
 }
-*/
